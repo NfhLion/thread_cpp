@@ -5,15 +5,17 @@
 using std::string;
 
 void threadFunc(string str) {
-    while (true) {
-        std::cout << "threadFunc thread id = " << std::this_thread::get_id() << "----------" << str << std::endl;
+    int i = 10;
+    while (i--) {
+        std::cout << "threadFunc thread id = " << std::this_thread::get_id() << "----------" << i << std::endl;
         sleep(1);
     }
 }
 
 void threadFunc2(string str) {
-    while (true) {
-        std::cout << "threadFunc2 thread id = " << std::this_thread::get_id() << "----------" << str << std::endl;
+    int i = 5;
+    while (i--) {
+        std::cout << "threadFunc2 thread id = " << std::this_thread::get_id() << "----------" << i << std::endl;
         sleep(1);
     }
 }
@@ -21,7 +23,7 @@ void threadFunc2(string str) {
 int main() {
     std::thread t(threadFunc, "t");
     std::thread t2(threadFunc2, "t2");
-    t.join();
+    //t.join();
     t2.join();
 
     t = std::move(t2);
